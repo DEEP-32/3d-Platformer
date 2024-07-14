@@ -26,6 +26,10 @@ namespace Platformer {
                 inputActions = new PlayerInputActions();
                 inputActions.Player.SetCallbacks(this);
             }
+           
+        }
+
+        public void EnablePlayerActions() {
             inputActions.Enable();
         }
 

@@ -22,6 +22,8 @@ namespace Platformer {
         float currentSpeed;
         float velocity;
 
+        static readonly int speed = Animator.StringToHash("Speed");
+
         private void Awake() {
             mainCam = Camera.main.transform;
             freeLookCam.Follow = transform;
@@ -31,8 +33,13 @@ namespace Platformer {
 
         }
 
+        private void Start() {
+            input.EnablePlayerActions();
+        }
+
         private void Update() {
             HandleMovements();
+            UpdateAnimator();
 
         }
 
@@ -62,12 +69,16 @@ namespace Platformer {
         void HandleRotation(Vector3 adjustetdDir) {
             var targetRot = Quaternion.LookRotation(adjustetdDir);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRot, rotationSpeed * Time.deltaTime);
-            transform.LookAt(transform.position + adjustetdDir);
+            //transform.LookAt(transform.position + adjustetdDir);
         }
 
         void SmoothSpeed(float target) {
             currentSpeed =  Mathf.SmoothDamp(currentSpeed, target, ref velocity, smoothTime);
 
+        }
+
+        void UpdateAnimator() {
+            animator.SetFloat(speed, currentSpeed);
         }
     }
 }
