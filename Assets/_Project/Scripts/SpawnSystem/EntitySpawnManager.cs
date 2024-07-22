@@ -14,8 +14,8 @@ namespace Platformer {
 
         protected virtual void Awake() {
             spawnPointStratergy = spawnPointStratergyType switch {
-                SpawnPointStratergyType.Linear => new LinearSpawnPointStratery(spawnPoints);
-                SpawnPointStratergyType.Random => new RandomSpawnPointStratergy(spawnPoints);
+                SpawnPointStratergyType.Linear => new LinearSpawnPointStratery(spawnPoints),
+                SpawnPointStratergyType.Random => new RandomSpawnPointStratergy(spawnPoints),
                 _ => spawnPointStratergy
             };
         }
